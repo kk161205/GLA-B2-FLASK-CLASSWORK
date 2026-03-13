@@ -10,7 +10,7 @@ load_dotenv()
 app = Flask(__name__)
 app.config["SECRET_KEY"] = os.getenv("SECRET_KEY", "dev-secret-key")
 app.config["SQLALCHEMY_DATABASE_URI"] = os.getenv(
-    "DATABASE_URL", "postgresql://username:password@localhost/database_name"
+    "DATABASE_URL"
 )
 app.config["SQLALCHEMY_TRACK_MODIFICATIONS"] = False
 db.init_app(app)
@@ -157,3 +157,6 @@ def logout():
 
 if __name__ == "__main__":
     app.run(debug=os.getenv("FLASK_ENV") == "development")
+
+# Export app for Vercel
+app = app
