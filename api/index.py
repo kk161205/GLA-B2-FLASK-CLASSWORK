@@ -1,12 +1,11 @@
-from flask import Flask
-import sys
 import os
+import sys
 
-# Add the app directory to the Python path
-sys.path.append(os.path.join(os.path.dirname(__file__), '..', 'app'))
+# Add app directory to Python path
+sys.path.insert(0, os.path.join(os.path.dirname(__file__), '..', 'app'))
 
+# Import Flask app
 from app import app
 
-# This is required for Vercel
-if __name__ == "__main__":
-    app.run()
+# Export for Vercel (this is the entry point)
+app = app

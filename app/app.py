@@ -9,14 +9,18 @@ load_dotenv()
 
 app = Flask(__name__)
 app.config["SECRET_KEY"] = os.getenv("SECRET_KEY", "dev-secret-key")
-app.config["SQLALCHEMY_DATABASE_URI"] = os.getenv(
-    "DATABASE_URL"
-)
+app.config["SQLALCHEMY_DATABASE_URI"] = os.getenv("DATABASE_URL")
 app.config["SQLALCHEMY_TRACK_MODIFICATIONS"] = False
+
+# Initialize database
 db.init_app(app)
 
-with app.app_context():
-    db.create_all()
+# Create tables within app context
+try:
+    with app.app_context():
+        db.create_all()
+except Exception as e:
+    print(f"Database initialization error: {e}")
 
 
 @app.route("/")
@@ -158,5 +162,5 @@ def logout():
 if __name__ == "__main__":
     app.run(debug=os.getenv("FLASK_ENV") == "development")
 
-# Export app for Vercel
+# Export for Vercel
 app = app
