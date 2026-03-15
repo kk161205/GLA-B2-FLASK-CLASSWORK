@@ -117,7 +117,7 @@ The application is deployed on Vercel with:
 - **Environment Variables**:
   - `SECRET_KEY`: Strong secret key for sessions
   - `DATABASE_URL`: Neon PostgreSQL connection string
-  - `FLASK_ENV`: `development`
+  - `FLASK_ENV`: `production`
 
 ### Local Development
 For local development:

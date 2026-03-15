@@ -160,7 +160,7 @@ def logout():
 
 
 if __name__ == "__main__":
-    app.run(debug=os.getenv("FLASK_ENV") == "development")
+    app.run(debug=os.getenv("FLASK_ENV") == "production")
 
 # Export for Vercel
 app = app
